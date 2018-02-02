@@ -1,0 +1,16 @@
+<div class='row'>
+  <div class='col-md-9'>
+    <% @movies.each do |movie| %>
+      <%= render 'movie', movie: movie %>
+    <% end %>
+    <%= paginate @movies %>
+  </div>
+  <div class='col-md-3'>
+
+      <%= render 'aggregations/aggregation' %>
+
+  </div>
+</div>
+
+
+  <%#= will_paginate @movies %>

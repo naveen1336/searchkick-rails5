@@ -1,0 +1,47 @@
+
+  <ul class='nav nav-pills nav-stacked'>
+<% if @movies.aggs["genres_name"].present? %>
+    <% if @movies.aggs["genres_name"]["buckets"].count > 0 %>
+
+        <h4>Filter by Genre</h4>
+
+        <% @movies.aggs["genres_name"]["buckets"].each do |filter| %>
+
+            <div class="list-group">
+              <%= link_to "/movies?q=#{params['q']}&&genres_name=#{filter['key']}", :class => "list-group-item list-group-item-action" do %>
+                  <%= filter["key"] %>
+                  <span class="badge">
+                  <%= filter["doc_count"] %>
+                </span>
+              <% end %>
+            </div>
+
+        <% end %>
+
+
+    <% end %>
+  <% end %>
+
+  <% if @movies.aggs["crews_name"].present? %>
+      <% if @movies.aggs["crews_name"]["buckets"].count > 0 %>
+
+          <h4>Filter by Crew Name</h4>
+
+          <% @movies.aggs["crews_name"]["buckets"].each do |filter| %>
+
+              <div class="list-group">
+                <%= link_to "/movies?q=#{params['q']}&&crews_name=#{filter['key']}", :class => "list-group-item list-group-item-action" do %>
+                    <%= filter["key"] %>
+                    <span class="badge">
+                    <%= filter["doc_count"] %>
+                  </span>
+                <% end %>
+              </div>
+
+          <% end %>
+
+
+      <% end %>
+    <% end %>
+
+</ul>
